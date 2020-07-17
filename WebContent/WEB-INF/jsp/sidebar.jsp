@@ -4,7 +4,7 @@
 
 	<ul class="nav flex-column">
 		<li class="nav-item"><a class="nav-link active"
-			href="/ActionLoggerSample/?view=dashboard"> Dashboard </a></li>
+			href="/ActionLogger/?view=dashboard"> Dashboard </a></li>
 	</ul>
 
 	<h6

@@ -53,8 +53,9 @@
 		</button>
 		<ul class="navbar-nav px-3">
 			<li class="nav-item text-nowrap"></li>
-			<li class="nav-item text-nowrap"><a class="nav-link"
-				href="/ActionLogger/logout">[ユーザー名] - ログアウト</a></li>
+			<li class="nav-item text-nowrap">
+			<a class="nav-link"
+				href="/ActionLogger/logout">ログアウト</a></li>
 		</ul>
 	</nav>
 
@@ -68,25 +69,23 @@
 			<main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
 				<!-- コンテンツエリアの中身をインポート -->
 				<%
-					if (view != null) {
-					switch (view) {
-					case "activities":
+					if (view != null && view.equals("activities")) {
 				%>
 				<jsp:include page="/WEB-INF/jsp/activities.jsp" />
 				<%
-					break;
-				case "addaction":
+					} else if (view != null && view.equals("addaction")) {
 				%>
 				<jsp:include page="/WEB-INF/jsp/addAction.jsp" />
 				<%
-					break;
-				default:
+					} else if (view != null && view.equals("addactionconfirm")) {
+				%>
+				<jsp:include page="/WEB-INF/jsp/addActionConfirm.jsp" />
+				<%
+					} else {
 				%>
 				<jsp:include page="/WEB-INF/jsp/dashboard.jsp" />
 				<%
-					break;
-				}
-				}
+					}
 				%>
 			</main>
 		</div>

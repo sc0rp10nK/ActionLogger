@@ -11,11 +11,11 @@
 		<tbody>
 			<tr class="d-flex">
 				<th scope="row" class="col-2 text-right">ユーザー名</tk>
-				<td>user001</td>
+				<td>${userid}</td>
 			</tr>
 			<tr class="d-flex">
 				<th scope="row" class="col-2 text-right">氏名</th>
-				<td>河原電子</td>
+				<td>${username}</td>
 			</tr>
 			<tr class="d-flex">
 				<th scope="row" class="col-2 text-right">参加グループ</th>

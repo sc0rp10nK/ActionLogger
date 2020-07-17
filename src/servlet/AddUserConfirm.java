@@ -35,7 +35,7 @@ public class AddUserConfirm extends HttpServlet {
 			
 			//表示データを用意する
 			ErrorViewData errorData = new ErrorViewData("問題が発生しました。",
-													"トップに戻る","/ActionLoggerSample/");
+													"トップに戻る","/ActionLogger/");
 			req.setAttribute("errorData", errorData);
 			
 			RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/jsp/errorView.jsp");

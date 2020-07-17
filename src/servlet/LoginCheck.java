@@ -49,11 +49,11 @@ public class LoginCheck extends HttpServlet {
 		// DBからユーザーを取得
 		UserDAO userDAO = new UserDAO();
 		User user = userDAO.get(req.getParameter("userid"));
-
 		// DBからの取得が成功 AND パスワードハッシュが合致
 		if (user != null && user.getPwdHash().equals(passwordHash)) {
 			HttpSession session = req.getSession();
 			session.setAttribute("userid", user.getUserId());
+			session.setAttribute("username", user.getName());
 			resp.sendRedirect("/ActionLogger/");
 
 		} else {

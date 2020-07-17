@@ -58,7 +58,7 @@ public class AddUser extends HttpServlet {
 		// フォーム確認キーをセッションスコープに設定
 		HttpSession session = req.getSession();
 		session.setAttribute("validationKey", validationKey);
-
+		
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/jsp/addUserForm.jsp");
 		dispatcher.forward(req, resp);
 	}
@@ -74,7 +74,7 @@ public class AddUser extends HttpServlet {
 			session.removeAttribute("validationKey");
 			//表示データを用意する
 			ErrorViewData errorData = new ErrorViewData("問題が発生しました。",
-													"トップに戻る","/ActionLoggerSample/");
+													"トップに戻る","/ActionLogger/");
 			req.setAttribute("errorData", errorData);
 			//エラー表示にフォワード
 			RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/jsp/errorView.jsp");
@@ -113,7 +113,7 @@ public class AddUser extends HttpServlet {
 		} catch (InputCheckException e1) {
 			//表示データを用意する
 			ErrorViewData errorData = new ErrorViewData("フォームに入力された内容に問題がありました。",
-													"入力画面に戻る","/ActionLoggerSample/adduser");
+													"入力画面に戻る","/ActionLogger/adduser");
 			req.setAttribute("errorData", errorData);
 			//エラー表示にフォワード
 			RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/jsp/errorView.jsp");

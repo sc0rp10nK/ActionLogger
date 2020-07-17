@@ -7,7 +7,7 @@
 <meta charset="utf-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>ActionLogger ユーザー登録確認</title>
+<title>ActionLogger ログイン</title>
 
 <!-- Bootstrap core CSS -->
 <link
@@ -17,6 +17,22 @@
 	crossorigin="anonymous">
 
 <meta name="theme-color" content="#563d7c">
+<style>
+.bd-placeholder-img {
+	font-size: 1.125rem;
+	text-anchor: middle;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+@media ( min-width : 768px) {
+	.bd-placeholder-img-lg {
+		font-size: 3.5rem;
+	}
+}
+</style>
 <!-- Custom styles for this template -->
 <link href="/GuiWork/css/dashboard.css" rel="stylesheet">
 </head>
@@ -28,26 +44,15 @@
 	</nav>
 	<div class="row">
 		<div class="col"></div>
-		<div class="col-8">
-			<form class="form-adduser"
-				action="/ActionLogger/addactionconfirm" method="post">
+		<div class="col-８">
+			<h4 h3 mb-3 font-weight-normal>AcctionLoggerエラー</h4>
+			${errorData.message}<br>
+			<a href="${errorData.link}">${errorData.linkStr}</a>
 
-				<h4 h3 mb-3 font-weight-normal>新規ユーザー</h4>
-				<div class="mb-3">ユーザーID : ${userToAdd.userId}</div>
-				<div class="mb-3">パスワード : *******</div>
-				<div class="mb-3">氏名 : ${userToAdd.name}</div>
-				<div class="mb-3">住所 : ${userToAdd.address}</div>
-				<div class="mb-3">電話番号 : ${userToAdd.tel}</div>
-				<div class="mb-3">メールアドレス : ${userToAdd.email}</div>
-				<%-- フォームの正当性確認データ --%>
-				<input type="hidden" name="vKey" value="${validationKey.value}">
-				<input type="hidden" name="status" value="confirmed"></input> <input
-					type="submit" class="btn btn-secondary btn-block btn-lg"
-					id="enterRoom" value="OK"></input>
-			</form>
 		</div>
 		<div class="col"></div>
 
 	</div>
 </body>
+
 </html>
