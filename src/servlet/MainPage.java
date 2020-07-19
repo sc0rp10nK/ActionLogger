@@ -1,6 +1,7 @@
 package servlet;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -9,6 +10,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import dao.ActionDAO;
+import model.Action;
 
 /**
  * Servlet implementation class MainPage
@@ -41,6 +45,12 @@ public class MainPage extends HttpServlet {
 			response.sendRedirect("/ActionLogger/login");
 
 		} else {
+			// DBから活動記録を取得
+			ActionDAO actionDAO = new ActionDAO();
+			List<Action> list = actionDAO.allGet((String)(session.getAttribute("userid")));
+			request.setAttribute("actList",list);
+			List<Action> ltyList = actionDAO.ltyGet((String)(session.getAttribute("userid")));
+			request.setAttribute("actLtyList",ltyList);
 			// MainViewを表示
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/mainView.jsp");
 			dispatcher.forward(request, response);

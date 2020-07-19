@@ -1,5 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"
+<%@ page language="java" contentType="text/html;charset=UTF-8"
 	pageEncoding="utf-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <div
 	class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
@@ -18,41 +19,15 @@
 			</tr>
 		</thead>
 		<tbody>
-			<tr>
-				<td>2020/06/16</td>
-				<td>9:00 - 13:00</td>
-				<td>KBC</td>
-				<td>授業</td>
-				<td></td>
-			</tr>
-			<tr>
-				<td>0000/00/00</td>
-				<td>00:00 - 00:00</td>
-				<td>□□□□□□□□□□□□□□□□□□□□</td>
-				<td>□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□</td>
-				<td>□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□</td>
-			</tr>
-			<tr>
-				<td>0000/00/00</td>
-				<td>00:00 - 00:00</td>
-				<td>□□□□□□□□□□□□□□□□□□□□</td>
-				<td>□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□</td>
-				<td>□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□</td>
-			</tr>
-			<tr>
-				<td>0000/00/00</td>
-				<td>00:00 - 00:00</td>
-				<td>□□□□□□□□□□□□□□□□□□□□</td>
-				<td>□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□</td>
-				<td>□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□</td>
-			</tr>
-			<tr>
-				<td>0000/00/00</td>
-				<td>00:00 - 00:00</td>
-				<td>□□□□□□□□□□□□□□□□□□□□</td>
-				<td>□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□</td>
-				<td>□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□</td>
-			</tr>
+			<c:forEach items="${actList}" var="act">
+				<tr>
+					<td><c:out value="${act.actionDate}" /></td>
+					<td><c:out value="${act.actionSTm } - ${act.actionETm}" /></td>
+					<td><c:out value="${act.actionPlace}" /></td>
+					<td><c:out value="${act.actionReason}" /></td>
+					<td><c:out value="${act.actionRemarks}" /></td>
+				</tr>
+			</c:forEach>
 		</tbody>
 	</table>
 </div>

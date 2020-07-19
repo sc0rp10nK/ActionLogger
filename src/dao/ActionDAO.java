@@ -7,8 +7,12 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+//その他
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 //action
 import model.Action;
 
@@ -18,10 +22,82 @@ public class ActionDAO {
 	private final String JDBC_URL = "jdbc:h2:tcp://localhost/~/h2db/actionlogger";
 	private final String DB_USER = "sa";
 	private final String DB_PASS = "";
+
+	//全ての行動記録取得
+	public List<Action> allGet(String userId) {
+		List<Action> list = new ArrayList<>();
+		HashMap<String, List<String>> hm = new HashMap<String, List<String>>();
+		// データベース接続
+		try (Connection conn = DriverManager.getConnection(JDBC_URL, DB_USER, DB_PASS)) {
+
+			// SELECT文の準備
+			String sql = "SELECT * FROM action WHERE ACTION_USERID = ?";
+			PreparedStatement pStmt = conn.prepareStatement(sql);
+			pStmt.setString(1, userId);
+
+			// SELECTを実行
+			ResultSet rs = pStmt.executeQuery();
+			// SELECT文の結果をactionに格納
+			while (rs.next()) {
+				Action act = new Action();
+				act.setActionId(rs.getString("ACTION_ID"));
+				act.setActionADT(rs.getString("ACTION_ADD_DATETIME"));
+				act.setActionDate(rs.getString("ACTION_DATE"));
+				act.setActionSTm(rs.getString("ACTION_START_TIME"));
+				act.setActionETm(rs.getString("ACTION_END_TIME"));
+				act.setActionPlace(rs.getString("ACTION_PLACE"));
+				act.setActionReason(rs.getString("ACTION_REASON"));
+				act.setActionRemarks(rs.getString("ACTION_REMARKS"));
+				act.setActionUserId(rs.getString("ACTION_USERID"));
+				//配列に格納
+				list.add(act);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
+		return list;
+	}
+	//最近の行動記録取得
+	public List<Action> ltyGet(String userId) {
+		List<Action> list = new ArrayList<>();
+		HashMap<String, List<String>> hm = new HashMap<String, List<String>>();
+		// データベース接続
+		try (Connection conn = DriverManager.getConnection(JDBC_URL, DB_USER, DB_PASS)) {
+
+			// SELECT文の準備
+			String sql = "SELECT * FROM action  WHERE ACTION_USERID = ? ORDER BY ACTION_ADD_DATETIME DESC LIMIT 5;";
+			PreparedStatement pStmt = conn.prepareStatement(sql);
+			pStmt.setString(1, userId);
+
+			// SELECTを実行
+			ResultSet rs = pStmt.executeQuery();
+			// SELECT文の結果をactionに格納
+			while (rs.next()) {
+				Action act = new Action();
+				act.setActionId(rs.getString("ACTION_ID"));
+				act.setActionADT(rs.getString("ACTION_ADD_DATETIME"));
+				act.setActionDate(rs.getString("ACTION_DATE"));
+				act.setActionSTm(rs.getString("ACTION_START_TIME"));
+				act.setActionETm(rs.getString("ACTION_END_TIME"));
+				act.setActionPlace(rs.getString("ACTION_PLACE"));
+				act.setActionReason(rs.getString("ACTION_REASON"));
+				act.setActionRemarks(rs.getString("ACTION_REMARKS"));
+				act.setActionUserId(rs.getString("ACTION_USERID"));
+				//配列に格納
+				list.add(act);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
+		return list;
+	}
 	public boolean set(Action act) {
 		// データベース接続
 		try (Connection conn = DriverManager.getConnection(JDBC_URL, DB_USER, DB_PASS)) {
 			Statement st = conn.createStatement();
+			//Action_ID作成
 			ResultSet rs = st.executeQuery("select count(*) cnt from action");
 			rs.next();
 			int count = rs.getInt("cnt");
