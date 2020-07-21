@@ -1,3 +1,5 @@
 *.class
 *.classpath
-/build/
+bin/
+build/
+.settings/
