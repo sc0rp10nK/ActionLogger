@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <div class="sidebar-sticky pt-3">
 
 	<ul class="nav flex-column">
@@ -15,7 +16,8 @@
 		</a>
 	</h6>
 	<ul class="nav flex-column mb-2">
-		<li class="nav-item"><a class="nav-link" href="/ActionLogger/?view=addaction"> <span
+		<li class="nav-item"><a class="nav-link"
+			href="/ActionLogger/?view=addaction"> <span
 				data-feather="file-text"></span> 活動記録登録
 		</a></li>
 		<li class="nav-item"><a class="nav-link"
@@ -30,7 +32,8 @@
 		</a>
 	</h6>
 	<ul class="nav flex-column mb-2">
-		<li class="nav-item"><a class="nav-link" href="#"> 新規グループ </a></li>
+		<li class="nav-item"><a class="nav-link"
+			href="/ActionLogger/?view=creatgroup"> 新規グループ </a></li>
 		<li class="nav-item"><a class="nav-link" href="#"> グループに参加 </a></li>
 	</ul>
 
@@ -42,9 +45,10 @@
 		</a>
 	</h6>
 	<ul class="nav flex-column mb-2">
-		<li class="nav-item"><a class="nav-link" href="#"> KBC ITE19
-		</a></li>
-		<li class="nav-item"><a class="nav-link" href="#"> KBC 教職員 </a></li>
+		<c:forEach items="${admGpList}" var="admGp">
+			<li class="nav-item"><a class="nav-link" href="#"><c:out
+						value="${admGp.groupName}" /></a></li>
+		</c:forEach>
 	</ul>
 
 	<h6

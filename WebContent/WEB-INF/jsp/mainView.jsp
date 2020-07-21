@@ -80,6 +80,14 @@
 					} else if (view != null && view.equals("addactionconfirm")) {
 				%>
 				<jsp:include page="/WEB-INF/jsp/addActionConfirm.jsp" />
+								<%
+					} else if (view != null && view.equals("creatgroup")) {
+				%>
+				<jsp:include page="/WEB-INF/jsp/creatGroup.jsp" />
+				<%
+					} else if (view != null && view.equals("creatgroupconfirm")) {
+				%>
+				<jsp:include page="/WEB-INF/jsp/creatGroupConfirm.jsp" />
 				<%
 					} else {
 				%>

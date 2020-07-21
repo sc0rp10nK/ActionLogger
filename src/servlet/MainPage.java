@@ -12,7 +12,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import dao.ActionDAO;
+import dao.GroupDAO;
 import model.Action;
+import model.Group;
 
 /**
  * Servlet implementation class MainPage
@@ -21,17 +23,9 @@ import model.Action;
 public class MainPage extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	/**
-	 * Default constructor.
-	 */
 	public MainPage() {
 		// TODO Auto-generated constructor stub
 	}
-
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
@@ -47,10 +41,15 @@ public class MainPage extends HttpServlet {
 		} else {
 			// DBから活動記録を取得
 			ActionDAO actionDAO = new ActionDAO();
-			List<Action> list = actionDAO.allGet((String)(session.getAttribute("userid")));
-			request.setAttribute("actList",list);
-			List<Action> ltyList = actionDAO.ltyGet((String)(session.getAttribute("userid")));
-			request.setAttribute("actLtyList",ltyList);
+			List<Action> actlist = actionDAO.allGet((String)(session.getAttribute("userid")));
+			request.setAttribute("actList",actlist);
+			List<Action> actltyList = actionDAO.ltyGet((String)(session.getAttribute("userid")));
+			request.setAttribute("actLtyList",actltyList);
+			GroupDAO groupDAO = new GroupDAO();
+			List<Group> gplist = groupDAO.allGet((String)(session.getAttribute("userid")));
+			request.setAttribute("gpList",gplist);
+			List<Group> admGpList = groupDAO.admGroupGet((String)(session.getAttribute("userid")));
+			request.setAttribute("admGpList",admGpList);
 			// MainViewを表示
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/mainView.jsp");
 			dispatcher.forward(request, response);

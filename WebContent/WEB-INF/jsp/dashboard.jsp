@@ -10,28 +10,12 @@
 	<table class="table table-borderless table-sm">
 		<tbody>
 			<tr class="d-flex">
-				<th scope="row" class="col-2 text-right">ユーザー名</tk>
+				<th scope="row" class="col-2 text-right">ユーザー名</th>
 				<td>${userid}</td>
 			</tr>
 			<tr class="d-flex">
 				<th scope="row" class="col-2 text-right">氏名</th>
 				<td>${username}</td>
-			</tr>
-			<tr class="d-flex">
-				<th scope="row" class="col-2 text-right">参加グループ</th>
-				<td>grp01</td>
-			</tr>
-			<tr class="d-flex">
-				<th scope="row" class="col-2 text-right"></th>
-				<td>grp02</td>
-			</tr>
-			<tr class="d-flex">
-				<th scope="row" class="col-2 text-right">管理グループ</th>
-				<td>KBC ITE19</td>
-			</tr>
-			<tr class="d-flex">
-				<th scope="row" class="col-2 text-right"></th>
-				<td>KBC 教職員</td>
 			</tr>
 		</tbody>
 	</table>
@@ -61,3 +45,4 @@
 		</tbody>
 	</table>
 </div>
+
