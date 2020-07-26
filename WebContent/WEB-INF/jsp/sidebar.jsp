@@ -34,7 +34,7 @@
 	<ul class="nav flex-column mb-2">
 		<li class="nav-item"><a class="nav-link"
 			href="/ActionLogger/?view=creatgroup"> 新規グループ </a></li>
-		<li class="nav-item"><a class="nav-link" href="#"> グループに参加 </a></li>
+		<li class="nav-item"><a class="nav-link" href="/ActionLogger/?view=joinGroup"> グループに参加 </a></li>
 	</ul>
 
 	<h6
@@ -46,7 +46,7 @@
 	</h6>
 	<ul class="nav flex-column mb-2">
 		<c:forEach items="${admGpList}" var="admGp">
-			<li class="nav-item"><a class="nav-link" href="#"><c:out
+			<li class="nav-item"><a class="nav-link" href="/ActionLogger/getmember?id=${admGp.groupId}"><c:out
 						value="${admGp.groupName}" /></a></li>
 		</c:forEach>
 	</ul>

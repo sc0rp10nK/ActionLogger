@@ -25,7 +25,7 @@ public class CreatGroupConfirm extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		HttpSession session = req.getSession();
 
-			// セッションスコープに保存していた、DB登録前のユーザー情報を取得
+			// セッションスコープに保存していた、DB登録前のグループ情報を取得
 			Group gp = (Group) session.getAttribute("groupToAdd");
 			GroupDAO groupDAO = new GroupDAO();
 			groupDAO.creat(gp); // DBに保存

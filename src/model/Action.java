@@ -69,4 +69,5 @@ public class Action implements Serializable{
 		this.actionUserId = actionUserId;
 	}
 	
+	
 }

@@ -53,8 +53,7 @@
 		</button>
 		<ul class="navbar-nav px-3">
 			<li class="nav-item text-nowrap"></li>
-			<li class="nav-item text-nowrap">
-			<a class="nav-link"
+			<li class="nav-item text-nowrap"><a class="nav-link"
 				href="/ActionLogger/logout">ログアウト</a></li>
 		</ul>
 	</nav>
@@ -80,7 +79,7 @@
 					} else if (view != null && view.equals("addactionconfirm")) {
 				%>
 				<jsp:include page="/WEB-INF/jsp/addActionConfirm.jsp" />
-								<%
+				<%
 					} else if (view != null && view.equals("creatgroup")) {
 				%>
 				<jsp:include page="/WEB-INF/jsp/creatGroup.jsp" />
@@ -88,6 +87,14 @@
 					} else if (view != null && view.equals("creatgroupconfirm")) {
 				%>
 				<jsp:include page="/WEB-INF/jsp/creatGroupConfirm.jsp" />
+				<%
+					} else if (view != null && view.equals("groupView")) {
+				%>
+				<jsp:include page="/WEB-INF/jsp/groupView.jsp" />
+				<%
+					} else if (view != null && view.equals("joinGroup")) {
+				%>
+				<jsp:include page="/WEB-INF/jsp/joinGroup.jsp" />
 				<%
 					} else {
 				%>

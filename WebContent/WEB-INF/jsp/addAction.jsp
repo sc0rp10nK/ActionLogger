@@ -18,7 +18,7 @@
 				<div class="mb-3">
 					<label for="start_time">開始時刻</label> <input type="time"
 						class="form-control" id="start_time" name="start_time"
-						placeholder="パスワード" 　required>
+						placeholder="開始時刻" 　required>
 					<div class="invalid-feedback">必須</div>
 				</div>
 				<div class="mb-3">

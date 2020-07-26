@@ -11,8 +11,8 @@ import java.sql.Statement;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
+
 //action
 import model.Action;
 
@@ -26,7 +26,6 @@ public class ActionDAO {
 	//全ての行動記録取得
 	public List<Action> allGet(String userId) {
 		List<Action> list = new ArrayList<>();
-		HashMap<String, List<String>> hm = new HashMap<String, List<String>>();
 		// データベース接続
 		try (Connection conn = DriverManager.getConnection(JDBC_URL, DB_USER, DB_PASS)) {
 
@@ -61,7 +60,6 @@ public class ActionDAO {
 	//最近の行動記録取得
 	public List<Action> ltyGet(String userId) {
 		List<Action> list = new ArrayList<>();
-		HashMap<String, List<String>> hm = new HashMap<String, List<String>>();
 		// データベース接続
 		try (Connection conn = DriverManager.getConnection(JDBC_URL, DB_USER, DB_PASS)) {
 

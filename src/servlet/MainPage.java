@@ -45,6 +45,7 @@ public class MainPage extends HttpServlet {
 			request.setAttribute("actList",actlist);
 			List<Action> actltyList = actionDAO.ltyGet((String)(session.getAttribute("userid")));
 			request.setAttribute("actLtyList",actltyList);
+			//DBから所属中 & 管理中グループを取得
 			GroupDAO groupDAO = new GroupDAO();
 			List<Group> gplist = groupDAO.allGet((String)(session.getAttribute("userid")));
 			request.setAttribute("gpList",gplist);

@@ -28,7 +28,7 @@ public class CreatGroup extends HttpServlet {
 			gp.setGroupName(req.getParameter("group_name"));
 			gp.setGroupAdm(true);
 			gp.setGroupUserId((String) session.getAttribute("userid"));
-			// actionオブジェクトをセッションスコープに一旦保存（DBに入れるのはConfirmの後）
+			// groupオブジェクトをセッションスコープに一旦保存（DBに入れるのはConfirmの後）
 			session.setAttribute("groupToAdd", gp);
 
 			// 確認画面にリダイレクト
