@@ -3,6 +3,15 @@ package model;
 public class Member extends User {
 	private String gpName; //グループ名
 	private String adm; //権限
+	private String gpId;
+
+	public String getGpId() {
+		return gpId;
+	}
+
+	public void setGpId(String gpId) {
+		this.gpId = gpId;
+	}
 
 	public String getGpName() {
 		return gpName;

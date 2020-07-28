@@ -23,14 +23,14 @@
 <body>
 	<nav
 		class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
-		<a class="navbar-brand col-md-3 col-lg-2 mr-0 px-3" href="#">Action
+		<a class="navbar-brand col-md-3 col-lg-2 mr-0 px-3" href="/ActionLogger/">Action
 			Logger</a>
 	</nav>
 	<div class="row">
 		<div class="col"></div>
 		<div class="col-8">
 			<form class="form-adduser"
-				action="/ActionLogger/addactionconfirm" method="post">
+				action="/ActionLogger/adduserconfirm" method="post">
 
 				<h4 h3 mb-3 font-weight-normal>新規ユーザー</h4>
 				<div class="mb-3">ユーザーID : ${userToAdd.userId}</div>

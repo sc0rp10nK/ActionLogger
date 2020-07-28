@@ -101,10 +101,11 @@ public class GroupDAO {
 			user_pStmt.setString(1, groupId);
 			// SELECTを実行
 			ResultSet user_rs = user_pStmt.executeQuery();
-			// SELECT文の結果をUserに格納
+			// SELECT文の結果をメンバーに格納
 			while (user_rs.next()) {
 				Member mb = new Member();
 				mb.setGpName(user_rs.getString("GROUP_NAME"));
+				mb.setGpId(user_rs.getString("GROUP_ID"));
 				mb.setUserId(user_rs.getString("USERID"));
 				mb.setName(user_rs.getString("NAME"));
 				mb.setAddress(user_rs.getString("ADDRESS"));

@@ -11,7 +11,7 @@
 <meta charset="utf-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Dashboard Template · Bootstrap</title>
+<title>Action Logger</title>
 
 <!-- Bootstrap core CSS -->
 <link
@@ -19,6 +19,7 @@
 	rel="stylesheet"
 	integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
 	crossorigin="anonymous">
+	<script defer src="https://use.fontawesome.com/releases/v5.8.1/js/all.js" integrity="sha384-g5uSoOSBd7KkhAMlnQILrecXvzst9TdC09/VM+pjDTCM+1il8RHz5fKANTFFb+gQ" crossorigin="anonymous"></script>
 
 <meta name="theme-color" content="#563d7c">
 <style>
@@ -43,7 +44,7 @@
 <body>
 	<nav
 		class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
-		<a class="navbar-brand col-md-3 col-lg-2 mr-0 px-3" href="#">Action
+		<a class="navbar-brand col-md-3 col-lg-2 mr-0 px-3" href="/ActionLogger/">Action
 			Logger</a>
 		<button class="navbar-toggler position-absolute d-md-none collapsed"
 			type="button" data-toggle="collapse" data-target="#sidebarMenu"
@@ -71,6 +72,10 @@
 					if (view != null && view.equals("activities")) {
 				%>
 				<jsp:include page="/WEB-INF/jsp/activities.jsp" />
+				<%
+					} else if (view != null && view.equals("getaction")) {
+				%>
+				<jsp:include page="/WEB-INF/jsp/getAction.jsp" />
 				<%
 					} else if (view != null && view.equals("addaction")) {
 				%>

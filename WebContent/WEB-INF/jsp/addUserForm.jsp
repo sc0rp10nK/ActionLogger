@@ -39,8 +39,8 @@
 <body>
 	<nav
 		class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
-		<a class="navbar-brand col-md-3 col-lg-2 mr-0 px-3" href="#">Action
-			Logger</a>
+		<a class="navbar-brand col-md-3 col-lg-2 mr-0 px-3"
+			href="/ActionLogger/">Action Logger</a>
 	</nav>
 	<div class="row">
 		<div class="col"></div>
@@ -51,7 +51,7 @@
 				<div class="mb-3">
 					<label for="userid">ユーザーID</label> <input type="text"
 						class="form-control" id="userid" name="userid"
-						placeholder="ユーザーID" 　	required>
+						placeholder="ユーザーID" required>
 					<div class="invalid-feedback">必須</div>
 				</div>
 				<div class="mb-3">
@@ -83,9 +83,9 @@
 				</div>
 				<input type="submit" class="btn btn-secondary btn-block btn-lg"
 					id="enterRoom" value="登録"></input>
+			</form>
 		</div>
 		<div class="col"></div>
-
 	</div>
 </body>
 </html>

@@ -57,6 +57,51 @@ public class ActionDAO {
 		}
 		return list;
 	}
+	//自分が管理してるユーザーの全ての行動記録取得
+		public List<Action> allGet(String userId,String groupId,String myUserId) {
+			List<Action> list = new ArrayList<>();
+			// データベース接続
+			try (Connection conn = DriverManager.getConnection(JDBC_URL, DB_USER, DB_PASS)) {
+				//実行しているユーザーが管理者判定
+				// SELECT文の準備
+				String sql = "SELECT count(*) cnt FROM MGT_GROUP INNER JOIN BELONG ON BELONG_GROUPID = GROUP_ID AND BELONG_USERID = ? AND ADM = TRUE AND GROUP_ID = ?";
+				PreparedStatement pStmt = conn.prepareStatement(sql);
+				pStmt.setString(1, myUserId);
+				pStmt.setString(2, groupId);
+				// SELECTを実行
+				ResultSet rs = pStmt.executeQuery();
+				rs.next();
+				if (rs.getInt("cnt") < 1) {
+					return null;
+				}
+				// SELECT文の準備
+				sql = "SELECT * FROM action WHERE ACTION_USERID = ?";
+				pStmt = conn.prepareStatement(sql);
+				pStmt.setString(1, userId);
+
+				// SELECTを実行
+				rs = pStmt.executeQuery();
+				// SELECT文の結果をactionに格納
+				while (rs.next()) {
+					Action act = new Action();
+					act.setActionId(rs.getString("ACTION_ID"));
+					act.setActionADT(rs.getString("ACTION_ADD_DATETIME"));
+					act.setActionDate(rs.getString("ACTION_DATE"));
+					act.setActionSTm(rs.getString("ACTION_START_TIME"));
+					act.setActionETm(rs.getString("ACTION_END_TIME"));
+					act.setActionPlace(rs.getString("ACTION_PLACE"));
+					act.setActionReason(rs.getString("ACTION_REASON"));
+					act.setActionRemarks(rs.getString("ACTION_REMARKS"));
+					act.setActionUserId(rs.getString("ACTION_USERID"));
+					//配列に格納
+					list.add(act);
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+				return null;
+			}
+			return list;
+		}
 	//最近の行動記録取得
 	public List<Action> ltyGet(String userId) {
 		List<Action> list = new ArrayList<>();
