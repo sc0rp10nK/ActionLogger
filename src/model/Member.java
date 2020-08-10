@@ -1,6 +1,8 @@
 package model;
 
-public class Member extends User {
+import java.io.Serializable;
+
+public class Member extends User implements Serializable{
 	private String gpName; //グループ名
 	private String adm; //権限
 	private String gpId;

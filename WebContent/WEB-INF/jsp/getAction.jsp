@@ -5,6 +5,8 @@
 <div
 	class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
 	<h1 class="h2">${getUserName}さんの行動記録</h1>
+		<button type="button" class="btn btn-primary" data-toggle="modal"
+		data-target="#modal">絞り込み</button>
 </div>
 
 <div class="table-responsive">
@@ -30,4 +32,52 @@
 			</c:forEach>
 		</tbody>
 	</table>
+</div>
+<div class="modal fade" id="modal" tabindex="-1" role="dialog"
+	aria-labelledby="label" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="label">絞り込み 検索</h5>
+				<button type="button" class="close" data-dismiss="modal"
+					aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<div class="row">
+					<div class="col"></div>
+					<div class="col-8">
+						<form class="form-search" id="search"
+							action="/ActionLogger/" method="get">
+							<input type="hidden" name="view" value="getaction">
+							<input type="hidden" name="id" value="${getUserId}">
+							<input type="hidden" name="gpid" value="${getGroupId}">
+							<div class="mb-3">
+								<label for="date">日付</label> <input type="date"
+									class="form-control" id="date" name="date" placeholder="日付">
+								<br> <label for="place">場所</label> <input type="text"
+									class="form-control" id="place" name="place" placeholder="場所">
+								<div class="form-group">
+									<label for="sel1">並び替え:</label> <select class="form-control"
+										id="sel1" name="order">
+										<option value="0">昇順</option>
+										<option value="1">降順</option>
+									</select>
+								</div>
+							</div>
+							 <input type="hidden" name="search" value="0"> <br>
+						</form>
+					</div>
+					<div class="col"></div>
+				</div>
+			</div>
+			<div class="modal-footer justify-content-center">
+				<button type="submit" class="btn btn-danger w-50" form="search"
+					data_but="btn-xs">
+					<i class='fa fa-search'></i> 検索
+				</button>
+			</div>
+		</div>
+	</div>
 </div>

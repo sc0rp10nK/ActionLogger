@@ -104,7 +104,7 @@ body {
 .gpvw-userid{
 	color: #007bff;
 }
-.gpvw-userid:hover .gpvw-userid.active{
+.gpvw-userid:hover{
 	text-decoration: none;
 	color: inherit;
 }

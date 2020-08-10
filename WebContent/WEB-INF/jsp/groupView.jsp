@@ -32,7 +32,7 @@
 				<tr>
 					<td><c:out value="${mb.name}" /></td>
 					<td><a class="gpvw-userid"
-						href="/ActionLogger/getaction?id=<c:out value="${mb.userId}" />&gpid=<c:out value="${mb.gpId}" />"><c:out
+						href="/ActionLogger/?view=getaction&id=<c:out value="${mb.userId}" />&gpid=<c:out value="${mb.gpId}" />"><c:out
 								value="${mb.userId}" /></a></td>
 					<td><c:out value="${mb.email}" /></td>
 					<td><c:out value="${mb.tel}" /></td>

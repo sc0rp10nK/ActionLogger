@@ -1,6 +1,8 @@
 package model;
 
-public class Group {
+import java.io.Serializable;
+
+public class Group implements Serializable{
 	private String groupId; // id
 	private String groupName; //名前
 	private String groupUserId; //ユーザーid

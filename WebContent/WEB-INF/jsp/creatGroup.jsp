@@ -8,7 +8,7 @@
 	<div class="row">
 		<div class="col"></div>
 		<div class="col-8">
-			<form class="form-addaction" action="/ActionLogger/creatgroup" method="post">
+			<form class="form-creategroup" action="/ActionLogger/creatgroup" method="post">
 				<div class="mb-3">
 					<label for="group_name">グループ名</label> <input type="text"
 						class="form-control" id="group_name" name="group_name" placeholder="グループ名"
@@ -20,5 +20,4 @@
 			</form>
 		</div>
 		<div class="col"></div>
-
 	</div>

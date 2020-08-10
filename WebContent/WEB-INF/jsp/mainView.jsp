@@ -93,7 +93,7 @@
 				%>
 				<jsp:include page="/WEB-INF/jsp/creatGroupConfirm.jsp" />
 				<%
-					} else if (view != null && view.equals("groupView")) {
+					} else if (view != null && view.equals("getmember")) {
 				%>
 				<jsp:include page="/WEB-INF/jsp/groupView.jsp" />
 				<%
