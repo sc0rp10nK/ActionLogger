@@ -2,5 +2,4 @@
 *.classpath
 bin/
 build/
-.settings/
 .DS_Store
