@@ -18,6 +18,9 @@
 
 <meta name="theme-color" content="#563d7c">
 <style>
+.form-signin{
+	boader:solid 2px black;
+}
 .bd-placeholder-img {
 	font-size: 1.125rem;
 	text-anchor: middle;
@@ -39,27 +42,27 @@
 <body>
 	<nav
 		class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
-		<a class="navbar-brand col-md-3 col-lg-2 mr-0 px-3" href="/ActionLogger/">Action
-			Logger</a>
+		<a class="navbar-brand col-md-3 col-lg-2 mr-0 px-3"
+			href="/ActionLogger/">Action Logger</a>
 	</nav>
 	<div class="row">
 		<div class="col"></div>
-		<div class="col-８">
-			<form class="form-signin" action="/ActionLogger/logincheck"
-				method="post">
-				<h4 h3 mb-3 font-weight-normal>AcctionLoggerログイン</h4>
-				<div class="form-group">
+		<div class="col-4">
+				<form class="form-signin" action="/ActionLogger/logincheck"
+					method="post">
+					<h4>ActionLoggerログイン</h4>
+					<div class="form-group">
 
-					ユーザー名<br> <input type="text" class="form-control"
-						name="userid" placeholder="username" required autofocus>
-					パスワード<br> <input type="password" class="form-control"
-						name="password" placeholder="パスワード" required>
-				</div>
-				<input type="submit" class="btn btn-secondary btn-block btn-lg"
-					id="login" value="ログイン"></input>
-			</form>
-			<a href="/ActionLogger/adduser">新規登録</a>
-
+						ユーザー名<br> <input type="text" class="form-control"
+							name="userid" placeholder="username" required autofocus>
+							<br>
+						パスワード<br> <input type="password" class="form-control"
+							name="password" placeholder="パスワード" required>
+					</div>
+					<input type="submit" class="btn btn-secondary btn-block btn-lg"
+						id="login" value="ログイン"></input>
+				</form>
+				<a class="text-center text-md-right" href="/ActionLogger/adduser">新規登録</a>
 		</div>
 		<div class="col"></div>
 

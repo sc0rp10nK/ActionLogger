@@ -54,6 +54,7 @@ public class LoginCheck extends HttpServlet {
 			HttpSession session = req.getSession();
 			session.setAttribute("userid", user.getUserId());
 			session.setAttribute("username", user.getName());
+			session.setAttribute("user", user);
 			resp.sendRedirect("/ActionLogger/");
 
 		} else {

@@ -19,10 +19,26 @@
 	rel="stylesheet"
 	integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
 	crossorigin="anonymous">
-	<script defer src="https://use.fontawesome.com/releases/v5.8.1/js/all.js" integrity="sha384-g5uSoOSBd7KkhAMlnQILrecXvzst9TdC09/VM+pjDTCM+1il8RHz5fKANTFFb+gQ" crossorigin="anonymous"></script>
-
+<script defer
+	src="https://use.fontawesome.com/releases/v5.8.1/js/all.js"
+	integrity="sha384-g5uSoOSBd7KkhAMlnQILrecXvzst9TdC09/VM+pjDTCM+1il8RHz5fKANTFFb+gQ"
+	crossorigin="anonymous"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 <meta name="theme-color" content="#563d7c">
 <style>
+#sidebarMenu {
+	height: 100vh;
+}
+
+#navLink {
+	color: white;
+}
+
+main {
+	height: 100vh;
+}
+
 .bd-placeholder-img {
 	font-size: 1.125rem;
 	text-anchor: middle;
@@ -44,19 +60,25 @@
 <body>
 	<nav
 		class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
-		<a class="navbar-brand col-md-3 col-lg-2 mr-0 px-3" href="/ActionLogger/">Action
-			Logger</a>
+		<a class="navbar-brand col-md-3 col-lg-2 mr-0 px-3"
+			href="/ActionLogger/">Action Logger</a>
 		<button class="navbar-toggler position-absolute d-md-none collapsed"
 			type="button" data-toggle="collapse" data-target="#sidebarMenu"
 			aria-controls="sidebarMenu" aria-expanded="false"
 			aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>
 		</button>
-		<ul class="navbar-nav px-3">
-			<li class="nav-item text-nowrap"></li>
-			<li class="nav-item text-nowrap"><a class="nav-link"
-				href="/ActionLogger/logout">ログアウト</a></li>
-		</ul>
+		<div class="nav-item dropdown">
+			<a class="nav-link dropdown-toggle" id="navLink"
+				data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				<i class="fas fa-user"></i> ${username}
+			</a>
+			<div class="dropdown-menu dropdown-menu-right dropdown-info"
+				aria-labelledby="navbarDropdownMenuLink-4">
+				<a class="dropdown-item" href="/ActionLogger/?view=profile">プロフィール</a>
+				<a class="dropdown-item" href="/ActionLogger/logout">ログアウト</a>
+			</div>
+		</div>
 	</nav>
 
 	<div class="container-fluid">
@@ -100,6 +122,10 @@
 					} else if (view != null && view.equals("joinGroup")) {
 				%>
 				<jsp:include page="/WEB-INF/jsp/joinGroup.jsp" />
+				<%
+					} else if (view != null && view.equals("profile")) {
+				%>
+				<jsp:include page="/WEB-INF/jsp/profile.jsp" />
 				<%
 					} else {
 				%>
