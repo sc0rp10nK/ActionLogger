@@ -55,6 +55,7 @@
 									id="date" name="date" placeholder="日付"> <br> <label
 									for="place">場所</label> <input type="text" class="form-control"
 									id="place" name="place" placeholder="場所">
+									<br>
 								<div class="form-group">
 									<label for="sel1">並び替え:</label> <select class="form-control"
 										id="sel1" name="order">

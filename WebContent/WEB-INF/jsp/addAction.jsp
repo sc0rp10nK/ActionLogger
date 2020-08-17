@@ -9,31 +9,31 @@
 		<div class="col-8">
 			<form class="form-addaction" action="/ActionLogger/addaction" method="post">
 				<div class="mb-3">
-					<label for="date">日付</label> <input type="date"
+					<label for="date"><span class="badge badge-danger">必須</span> 日付</label> <input type="date"
 						class="form-control" id="date" name="date" placeholder="日付"
 						　	required>
 					<div class="invalid-feedback">必須</div>
 				</div>
 				<div class="mb-3">
-					<label for="start_time">開始時刻</label> <input type="time"
+					<label for="start_time"><span class="badge badge-danger">必須</span> 開始時刻</label> <input type="time"
 						class="form-control" id="start_time" name="start_time"
 						placeholder="開始時刻" 　required>
 					<div class="invalid-feedback">必須</div>
 				</div>
 				<div class="mb-3">
-					<label for="end_time">終了時刻</label> <input type="time"
+					<label for="end_time"><span class="badge badge-danger">必須</span> 終了時刻</label> <input type="time"
 						class="form-control" id="end_time" name="end_time"
 						placeholder="終了時刻" 　required>
 					<div class="invalid-feedback">必須</div>
 				</div>
 				<div class="mb-3">
-					<label for="place">場所</label> <input type="text"
+					<label for="place"><span class="badge badge-danger">必須</span> 場所</label> <input type="text"
 						class="form-control" id="place" name="place" placeholder="場所"
 						required>
 					<div class="invalid-feedback">必須</div>
 				</div>
 				<div class="mb-3">
-					<label for="reason">理由</label> <textarea
+					<label for="reason"><span class="badge badge-danger">必須</span> 理由</label> <textarea
 						class="form-control" id="reason" name="reason" placeholder="理由"
 						rcols="60" rows="5" style="resize: none;" required></textarea>
 					<div class="invalid-feedback">必須</div>

@@ -23,8 +23,7 @@
 	src="https://use.fontawesome.com/releases/v5.8.1/js/all.js"
 	integrity="sha384-g5uSoOSBd7KkhAMlnQILrecXvzst9TdC09/VM+pjDTCM+1il8RHz5fKANTFFb+gQ"
 	crossorigin="anonymous"></script>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <meta name="theme-color" content="#563d7c">
 <style>
 #sidebarMenu {
@@ -54,8 +53,6 @@ main {
 	}
 }
 </style>
-<!-- Custom styles for this template -->
-<link href="/GuiWork/css/dashboard.css" rel="stylesheet">
 </head>
 <body>
 	<nav
@@ -76,6 +73,7 @@ main {
 			<div class="dropdown-menu dropdown-menu-right dropdown-info"
 				aria-labelledby="navbarDropdownMenuLink-4">
 				<a class="dropdown-item" href="/ActionLogger/?view=profile">プロフィール</a>
+				<a class="dropdown-item" href="/ActionLogger/?view=password">パスワード変更</a>
 				<a class="dropdown-item" href="/ActionLogger/logout">ログアウト</a>
 			</div>
 		</div>
@@ -126,6 +124,10 @@ main {
 					} else if (view != null && view.equals("profile")) {
 				%>
 				<jsp:include page="/WEB-INF/jsp/profile.jsp" />
+				<%
+					} else if (view != null && view.equals("password")) {
+				%>
+				<jsp:include page="/WEB-INF/jsp/password.jsp" />
 				<%
 					} else {
 				%>

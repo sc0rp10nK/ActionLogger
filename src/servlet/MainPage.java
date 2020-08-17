@@ -129,6 +129,25 @@ public class MainPage extends HttpServlet {
 
 					// フォーム確認キーをセッションスコープに設定
 					session.setAttribute("validationKey", validationKey);
+				}else if(view.equals("password")) {
+					// 正当なフォームから送られたデータであることを確認するためのキーの生成
+					ValidationKey validationKey = new ValidationKey();
+					try {
+						Random random = new Random();
+						String randomStr = String.valueOf(random.nextLong());
+						MessageDigest validation = MessageDigest.getInstance("MD5");
+						validation.reset();
+						validation.update(randomStr.getBytes("utf8"));
+						String vkey = String.format("%032x", new BigInteger(1, validation.digest()));
+						validationKey.setValue(vkey);
+					} catch (NoSuchAlgorithmException e) {
+						e.printStackTrace();
+					} catch (UnsupportedEncodingException e) {
+						e.printStackTrace();
+					}
+
+					// フォーム確認キーをセッションスコープに設定
+					session.setAttribute("validationKey", validationKey);
 				}
 			}
 			// DBから活動記録を取得

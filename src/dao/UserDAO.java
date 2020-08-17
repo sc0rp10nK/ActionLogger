@@ -71,6 +71,27 @@ public class UserDAO {
 		}
 		return true;
 	}
+	public boolean changePass(User user) {
+		// データベース接続
+		try (Connection conn = DriverManager.getConnection(JDBC_URL, DB_USER, DB_PASS)) {
+
+			// UPDATE文の準備
+			String sql = "UPDATE USER SET PWDHASH = ? WHERE USERID = ?";
+			PreparedStatement pStmt = conn.prepareStatement(sql);
+			// UPDATE文中の「?」に使用する値を設定しSQLを完成
+			pStmt.setString(1, user.getPwdHash());
+			pStmt.setString(2, user.getUserId());
+			// UPDATE文を実行
+			int result = pStmt.executeUpdate();
+			if (result != 1) {
+				return false;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
+		return true;
+	}
 	// ユーザーを指定して、ユーザー情報を保存
 	// 戻り値:true 成功 , false 失敗
 	public boolean save(User user) {
