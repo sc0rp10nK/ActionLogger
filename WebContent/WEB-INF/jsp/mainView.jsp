@@ -23,10 +23,12 @@
 	src="https://use.fontawesome.com/releases/v5.8.1/js/all.js"
 	integrity="sha384-g5uSoOSBd7KkhAMlnQILrecXvzst9TdC09/VM+pjDTCM+1il8RHz5fKANTFFb+gQ"
 	crossorigin="anonymous"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <meta name="theme-color" content="#563d7c">
 <style>
 #sidebarMenu {
+	padding: 0px;
 	height: 100vh;
 }
 
@@ -38,6 +40,14 @@ main {
 	height: 100vh;
 }
 
+#sidebar-heading {
+	height: 2em;
+	background-color: #343a40;
+	filter: drop-shadow(10px 10px 10px rgba(0,0,0,0.2));
+}
+#sidebar-heading span{
+	color: white;
+}
 .bd-placeholder-img {
 	font-size: 1.125rem;
 	text-anchor: middle;

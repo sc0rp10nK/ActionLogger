@@ -17,6 +17,7 @@
 				<th>場所</th>
 				<th>理由</th>
 				<th>備考</th>
+				<th></th>
 			</tr>
 		</thead>
 		<tbody>
@@ -27,11 +28,15 @@
 					<td><c:out value="${act.actionPlace}" /></td>
 					<td><c:out value="${act.actionReason}" /></td>
 					<td><c:out value="${act.actionRemarks}" /></td>
+					<td><button type="button"
+							class="delete-confirm btn btn-success" value="${act.actionId}"
+							data-toggle="modal" data-target="#confirm-delete">削除</button></td>
 				</tr>
 			</c:forEach>
 		</tbody>
 	</table>
 </div>
+<!-- 検索 Modal -->
 <div class="modal fade" id="modal" tabindex="-1" role="dialog"
 	aria-labelledby="label" aria-hidden="true">
 	<div class="modal-dialog" role="document">
@@ -54,8 +59,7 @@
 									for="date">日付</label> <input type="date" class="form-control"
 									id="date" name="date" placeholder="日付"> <br> <label
 									for="place">場所</label> <input type="text" class="form-control"
-									id="place" name="place" placeholder="場所">
-									<br>
+									id="place" name="place" placeholder="場所"> <br>
 								<div class="form-group">
 									<label for="sel1">並び替え:</label> <select class="form-control"
 										id="sel1" name="order">
@@ -79,3 +83,32 @@
 		</div>
 	</div>
 </div>
+<!-- 削除確認 Modal -->
+<div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title">確認</h5>
+				<button type="button" class="close" data-dismiss="modal"
+					aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">削除しますか？</div>
+			<div class="modal-footer">
+				<form action="/ActionLogger/" method="post">
+				<input type="hidden" name="view" value="activities">
+					<button type="submit" class="btn btn-success" id="deletebtn"
+						name="deletebtn">はい</button>
+					<button type="button" class="btn btn-secondary"
+						data-dismiss="modal">いいえ</button>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+<script>
+	$('.delete-confirm').click(function() {
+		$('#deletebtn').val($(this).val());
+	});
+</script>

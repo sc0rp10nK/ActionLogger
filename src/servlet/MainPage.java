@@ -99,7 +99,12 @@ public class MainPage extends HttpServlet {
 						String place = (String) request.getParameter("place");
 						String order = (String) request.getParameter("order");
 						actlist = actionDAO.searchAllGet(userid, date, place, order);
+					}else {
+						String actId = (String) request.getParameter("deletebtn");
+						actionDAO.delete(actId);
+						actlist = actionDAO.allGet((String) (session.getAttribute("userid")));
 					}
+					
 				} else if (view.equals("getmember")) {
 					String gpId = (String) request.getParameter("id");
 					// DBから管理しているグループのメンバーリストを取得

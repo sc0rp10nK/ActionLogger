@@ -45,4 +45,5 @@
 		</tbody>
 	</table>
 </div>
+<button type="button" class="btn btn-info mx-auto d-block" onclick="location.href='/ActionLogger/?view=activities'">もっと見る</button>
 

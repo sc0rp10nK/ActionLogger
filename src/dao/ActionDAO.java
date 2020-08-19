@@ -23,14 +23,14 @@ public class ActionDAO {
 	private final String DB_USER = "sa";
 	private final String DB_PASS = "";
 
-	//全ての行動記録取得
+	// 全ての行動記録取得
 	public List<Action> allGet(String userId) {
 		List<Action> list = new ArrayList<>();
 		// データベース接続
 		try (Connection conn = DriverManager.getConnection(JDBC_URL, DB_USER, DB_PASS)) {
 
 			// SELECT文の準備
-			String sql = "SELECT * FROM action WHERE ACTION_USERID = ?";
+			String sql = "SELECT * FROM action WHERE ACTION_USERID = ? AND ACTION_DELETE_DATETIME IS NULL;";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 			pStmt.setString(1, userId);
 
@@ -48,7 +48,7 @@ public class ActionDAO {
 				act.setActionReason(rs.getString("ACTION_REASON"));
 				act.setActionRemarks(rs.getString("ACTION_REMARKS"));
 				act.setActionUserId(rs.getString("ACTION_USERID"));
-				//配列に格納
+				// 配列に格納
 				list.add(act);
 			}
 		} catch (SQLException e) {
@@ -58,12 +58,12 @@ public class ActionDAO {
 		return list;
 	}
 
-	//自分が管理してるユーザーの全ての行動記録取得
+	// 自分が管理してるユーザーの全ての行動記録取得
 	public List<Action> allGet(String userId, String groupId, String myUserId) {
 		List<Action> list = new ArrayList<>();
 		// データベース接続
 		try (Connection conn = DriverManager.getConnection(JDBC_URL, DB_USER, DB_PASS)) {
-			//実行しているユーザーが管理者判定
+			// 実行しているユーザーが管理者判定
 			// SELECT文の準備
 			String sql = "SELECT count(*) cnt FROM MGT_GROUP INNER JOIN BELONG ON BELONG_GROUPID = GROUP_ID AND BELONG_USERID = ? AND ADM = TRUE AND GROUP_ID = ?";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
@@ -76,7 +76,7 @@ public class ActionDAO {
 				return null;
 			}
 			// SELECT文の準備
-			sql = "SELECT * FROM action WHERE ACTION_USERID = ?";
+			sql = "SELECT * FROM action WHERE ACTION_USERID = ? AND ACTION_DELETE_DATETIME IS NULL;";
 			pStmt = conn.prepareStatement(sql);
 			pStmt.setString(1, userId);
 
@@ -94,7 +94,7 @@ public class ActionDAO {
 				act.setActionReason(rs.getString("ACTION_REASON"));
 				act.setActionRemarks(rs.getString("ACTION_REMARKS"));
 				act.setActionUserId(rs.getString("ACTION_USERID"));
-				//配列に格納
+				// 配列に格納
 				list.add(act);
 			}
 		} catch (SQLException e) {
@@ -104,14 +104,14 @@ public class ActionDAO {
 		return list;
 	}
 
-	//最近の行動記録取得
+	// 最近の行動記録取得
 	public List<Action> ltyGet(String userId) {
 		List<Action> list = new ArrayList<>();
 		// データベース接続
 		try (Connection conn = DriverManager.getConnection(JDBC_URL, DB_USER, DB_PASS)) {
 
 			// SELECT文の準備
-			String sql = "SELECT * FROM action  WHERE ACTION_USERID = ? ORDER BY ACTION_ADD_DATETIME DESC LIMIT 5;";
+			String sql = "SELECT * FROM action  WHERE ACTION_USERID = ? AND ACTION_DELETE_DATETIME IS NULL ORDER BY ACTION_ADD_DATETIME DESC LIMIT 5;";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 			pStmt.setString(1, userId);
 
@@ -129,7 +129,7 @@ public class ActionDAO {
 				act.setActionReason(rs.getString("ACTION_REASON"));
 				act.setActionRemarks(rs.getString("ACTION_REMARKS"));
 				act.setActionUserId(rs.getString("ACTION_USERID"));
-				//配列に格納
+				// 配列に格納
 				list.add(act);
 			}
 		} catch (SQLException e) {
@@ -139,18 +139,18 @@ public class ActionDAO {
 		return list;
 	}
 
-	//検索結果
+	// 検索結果
 	public List<Action> searchAllGet(String userId, String date, String place, String order) {
 		List<Action> list = new ArrayList<>();
 		// データベース接続
 		try (Connection conn = DriverManager.getConnection(JDBC_URL, DB_USER, DB_PASS)) {
 			String sql = "";
 			// SELECT文の準備
-			//ソート判定
+			// ソート判定
 			if (order.equals("0")) {
-				sql = "SELECT * FROM action WHERE ACTION_USERID = ? AND ACTION_DATE LIKE ? AND ACTION_PLACE LIKE ? ORDER BY ACTION_ADD_DATETIME ASC;";
+				sql = "SELECT * FROM action WHERE ACTION_USERID = ? AND ACTION_DATE LIKE ? AND ACTION_PLACE LIKE ? AND ACTION_DELETE_DATETIME IS NULL ORDER BY ACTION_ADD_DATETIME ASC;";
 			} else if (order.equals("1")) {
-				sql = "SELECT * FROM action WHERE ACTION_USERID = ? AND ACTION_DATE LIKE ? AND ACTION_PLACE LIKE ? ORDER BY ACTION_ADD_DATETIME DESC;";
+				sql = "SELECT * FROM action WHERE ACTION_USERID = ? AND ACTION_DATE LIKE ? AND ACTION_PLACE LIKE ? AND ACTION_DELETE_DATETIME IS NULL ORDER BY ACTION_ADD_DATETIME DESC;";
 			}
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 			pStmt.setString(1, userId);
@@ -170,7 +170,7 @@ public class ActionDAO {
 				act.setActionReason(rs.getString("ACTION_REASON"));
 				act.setActionRemarks(rs.getString("ACTION_REMARKS"));
 				act.setActionUserId(rs.getString("ACTION_USERID"));
-				//配列に格納
+				// 配列に格納
 				list.add(act);
 			}
 		} catch (SQLException e) {
@@ -180,14 +180,14 @@ public class ActionDAO {
 		return list;
 	}
 
-	//検索結果
+	// 検索結果
 	public List<Action> searchAllGet(String userId, String date, String place, String order, String groupId,
 			String myUserId) {
 		List<Action> list = new ArrayList<>();
 		// データベース接続
 		try (Connection conn = DriverManager.getConnection(JDBC_URL, DB_USER, DB_PASS)) {
 			String sql = "";
-			//実行しているユーザーが管理者判定
+			// 実行しているユーザーが管理者判定
 			// SELECT文の準備
 			sql = "SELECT count(*) cnt FROM MGT_GROUP INNER JOIN BELONG ON BELONG_GROUPID = GROUP_ID AND BELONG_USERID = ? AND ADM = TRUE AND GROUP_ID = ?;";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
@@ -200,11 +200,11 @@ public class ActionDAO {
 				return null;
 			}
 			// SELECT文の準備
-			//ソート判定
+			// ソート判定
 			if (order.equals("0")) {
-				sql = "SELECT * FROM action WHERE ACTION_USERID = ? AND ACTION_DATE LIKE ? AND ACTION_PLACE LIKE ? ORDER BY ACTION_ADD_DATETIME ASC;";
+				sql = "SELECT * FROM action WHERE ACTION_USERID = ? AND ACTION_DATE LIKE ? AND ACTION_PLACE LIKE ? AND ACTION_DELETE_DATETIME IS NULL ORDER BY ACTION_ADD_DATETIME ASC;";
 			} else if (order.equals("1")) {
-				sql = "SELECT * FROM action WHERE ACTION_USERID = ? AND ACTION_DATE LIKE ? AND ACTION_PLACE LIKE ? ORDER BY ACTION_ADD_DATETIME DESC;";
+				sql = "SELECT * FROM action WHERE ACTION_USERID = ? AND ACTION_DATE LIKE ? AND ACTION_PLACE LIKE ? AND ACTION_DELETE_DATETIME IS NULL ORDER BY ACTION_ADD_DATETIME DESC;";
 			}
 			pStmt = conn.prepareStatement(sql);
 			pStmt.setString(1, userId);
@@ -224,7 +224,7 @@ public class ActionDAO {
 				act.setActionReason(rs.getString("ACTION_REASON"));
 				act.setActionRemarks(rs.getString("ACTION_REMARKS"));
 				act.setActionUserId(rs.getString("ACTION_USERID"));
-				//配列に格納
+				// 配列に格納
 				list.add(act);
 			}
 		} catch (SQLException e) {
@@ -234,12 +234,39 @@ public class ActionDAO {
 		return list;
 	}
 
-	//活動記録登録
+	// 削除
+	public boolean delete(String actid) {
+		// データベース接続
+		try (Connection conn = DriverManager.getConnection(JDBC_URL, DB_USER, DB_PASS)) {
+			// UPDATE文の準備
+			String sql = "UPDATE ACTION SET ACTION_DELETE_DATETIME = ? WHERE ACTION_ID = ?";
+			PreparedStatement pStmt = conn.prepareStatement(sql);
+			// 現在時刻を取得
+			LocalDateTime date = LocalDateTime.now();
+			DateTimeFormatter dtformat = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+			String fdate = dtformat.format(date);
+			// UPDATE文中の「?」に使用する値を設定しSQLを完成
+			pStmt.setString(1, fdate);
+			pStmt.setString(2, actid);
+			// UPDATE文を実行
+			int result = pStmt.executeUpdate();
+			if (result != 1) {
+				return false;
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
+		return true;
+	}
+
+	// 活動記録登録
 	public boolean set(Action act) {
 		// データベース接続
 		try (Connection conn = DriverManager.getConnection(JDBC_URL, DB_USER, DB_PASS)) {
 			Statement st = conn.createStatement();
-			//Action_ID作成
+			// Action_ID作成
 			ResultSet rs = st.executeQuery("select count(*) cnt from action");
 			rs.next();
 			int count = rs.getInt("cnt");
