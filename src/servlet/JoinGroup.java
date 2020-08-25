@@ -29,7 +29,7 @@ public class JoinGroup extends HttpServlet {
 		req.setCharacterEncoding("UTF-8");
 		HttpSession session = req.getSession();
 		GroupDAO groupDAO = new GroupDAO();
-		groupDAO.add((String) session.getAttribute("userid"),req.getParameter("group_id")); // DBに保存
+		groupDAO.join((String) session.getAttribute("userid"),req.getParameter("group_id")); // DBに保存
 		// DBへの保存が成功したものとして、メインページに遷移
 		resp.sendRedirect("/ActionLogger/");
 	}

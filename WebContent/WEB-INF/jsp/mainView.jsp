@@ -43,11 +43,13 @@ main {
 #sidebar-heading {
 	height: 2em;
 	background-color: #343a40;
-	filter: drop-shadow(10px 10px 10px rgba(0,0,0,0.2));
+	filter: drop-shadow(10px 10px 10px rgba(20, 23, 25, 0.3));
 }
-#sidebar-heading span{
+
+#sidebar-heading span {
 	color: white;
 }
+
 .bd-placeholder-img {
 	font-size: 1.125rem;
 	text-anchor: middle;
@@ -138,6 +140,10 @@ main {
 					} else if (view != null && view.equals("password")) {
 				%>
 				<jsp:include page="/WEB-INF/jsp/password.jsp" />
+				<%
+					} else if (view != null && view.equals("joininggroup")) {
+				%>
+				<jsp:include page="/WEB-INF/jsp/JoiningGroup.jsp" />
 				<%
 					} else {
 				%>

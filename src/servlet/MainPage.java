@@ -99,12 +99,12 @@ public class MainPage extends HttpServlet {
 						String place = (String) request.getParameter("place");
 						String order = (String) request.getParameter("order");
 						actlist = actionDAO.searchAllGet(userid, date, place, order);
-					}else {
+					} else {
 						String actId = (String) request.getParameter("deletebtn");
 						actionDAO.delete(actId);
 						actlist = actionDAO.allGet((String) (session.getAttribute("userid")));
 					}
-					
+
 				} else if (view.equals("getmember")) {
 					String gpId = (String) request.getParameter("id");
 					// DBから管理しているグループのメンバーリストを取得
@@ -115,7 +115,7 @@ public class MainPage extends HttpServlet {
 					} else {
 						session.setAttribute("mbList", mbList);
 					}
-				}else if(view.equals("profile")) {
+				} else if (view.equals("profile")) {
 					// 正当なフォームから送られたデータであることを確認するためのキーの生成
 					ValidationKey validationKey = new ValidationKey();
 					try {
@@ -134,7 +134,7 @@ public class MainPage extends HttpServlet {
 
 					// フォーム確認キーをセッションスコープに設定
 					session.setAttribute("validationKey", validationKey);
-				}else if(view.equals("password")) {
+				} else if (view.equals("password")) {
 					// 正当なフォームから送られたデータであることを確認するためのキーの生成
 					ValidationKey validationKey = new ValidationKey();
 					try {
@@ -153,19 +153,22 @@ public class MainPage extends HttpServlet {
 
 					// フォーム確認キーをセッションスコープに設定
 					session.setAttribute("validationKey", validationKey);
+				} else if (view.equals("joininggroup")) {
+					String gpid = (String) request.getParameter("deletebtn");
+					groupDAO.leave(userid, gpid);
 				}
 			}
 			// DBから活動記録を取得
-			List<Action> actltyList = actionDAO.ltyGet((String) (session.getAttribute("userid")));
-			// DBから所属中 & 管理中グループを取得
-			List<Group> gplist = groupDAO.allGet((String) (session.getAttribute("userid")));
-			List<Group> admGpList = groupDAO.admGroupGet((String) (session.getAttribute("userid")));
-
+			List<Action> actltyList = actionDAO.ltyGet(userid);
+			// DBから所属中 & 参加,管理中グループを取得
+			List<Group> gplist = groupDAO.allGet(userid);
+			List<Group> admGpList = groupDAO.groupGet(userid, true);
+			List<Group> joingGpList = groupDAO.groupGet(userid, false);
 			session.setAttribute("actList", actlist);
 			session.setAttribute("actLtyList", actltyList);
 			session.setAttribute("gpList", gplist);
 			session.setAttribute("admGpList", admGpList);
-
+			session.setAttribute("joingGpList", joingGpList);
 			// MainViewを表示
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/mainView.jsp");
 			dispatcher.forward(request, response);

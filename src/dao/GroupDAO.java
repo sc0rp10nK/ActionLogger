@@ -5,6 +5,8 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -26,7 +28,7 @@ public class GroupDAO {
 		try (Connection conn = DriverManager.getConnection(JDBC_URL, DB_USER, DB_PASS)) {
 
 			// SELECT文の準備
-			String sql = "SELECT * FROM MGT_GROUP INNER JOIN BELONG ON BELONG_GROUPID = GROUP_ID AND BELONG_USERID  = ?;";
+			String sql = "SELECT * FROM MGT_GROUP INNER JOIN BELONG ON BELONG_GROUPID = GROUP_ID AND BELONG_USERID  = ? AND LEAVE_DATETIME IS NULL;";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 			pStmt.setString(1, userId);
 			// SELECTを実行
@@ -48,14 +50,20 @@ public class GroupDAO {
 		return list;
 	}
 
-	//指定のユーザーが管理しているグループを取得
-	public List<Group> admGroupGet(String userId) {
+	//指定ユーザーのグループ取得
+	public List<Group> groupGet(String userId, boolean ADM) {
 		List<Group> list = new ArrayList<>();
 		// データベース接続
 		try (Connection conn = DriverManager.getConnection(JDBC_URL, DB_USER, DB_PASS)) {
 
 			// SELECT文の準備
-			String sql = "SELECT * FROM MGT_GROUP INNER JOIN BELONG ON BELONG_GROUPID = GROUP_ID AND BELONG_USERID = ? AND ADM = TRUE;";
+			String sql;
+			//管理グループか参加グループの判定
+			if (ADM) {
+				sql = "SELECT * FROM MGT_GROUP INNER JOIN BELONG ON BELONG_GROUPID = GROUP_ID AND BELONG_USERID = ? AND ADM = TRUE AND LEAVE_DATETIME IS NULL;";
+			} else {
+				sql = "SELECT * FROM MGT_GROUP INNER JOIN BELONG ON BELONG_GROUPID = GROUP_ID AND BELONG_USERID = ? AND ADM = FAlSE AND LEAVE_DATETIME IS NULL;";
+			}
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 			pStmt.setString(1, userId);
 			// SELECTを実行
@@ -76,7 +84,6 @@ public class GroupDAO {
 		}
 		return list;
 	}
-
 	//管理者用 グループ内の情報取得
 	public List<Member> admGpGet(String userId, String groupId) {
 		List<Member> list = new ArrayList<>();
@@ -84,7 +91,7 @@ public class GroupDAO {
 		try (Connection conn = DriverManager.getConnection(JDBC_URL, DB_USER, DB_PASS)) {
 			//実行しているユーザーが管理者判定
 			// SELECT文の準備
-			String sql = "SELECT count(*) cnt FROM MGT_GROUP INNER JOIN BELONG ON BELONG_GROUPID = GROUP_ID AND BELONG_USERID = ? AND ADM = TRUE AND GROUP_ID = ?";
+			String sql = "SELECT count(*) cnt FROM MGT_GROUP INNER JOIN BELONG ON BELONG_GROUPID = GROUP_ID AND BELONG_USERID = ? AND ADM = TRUE AND GROUP_ID = ? AND LEAVE_DATETIME IS NULL;";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 			pStmt.setString(1, userId);
 			pStmt.setString(2, groupId);
@@ -126,8 +133,35 @@ public class GroupDAO {
 		}
 		return list;
 	}
+	//グループ退出
+	public boolean leave(String userId,String groupId) {
+		// データベース接続
+				try (Connection conn = DriverManager.getConnection(JDBC_URL, DB_USER, DB_PASS)) {
+					// UPDATE文の準備
+					String sql = "UPDATE BELONG SET LEAVE_DATETIME = ? WHERE BELONG_USERID = ? AND BELONG_GROUPID = ?";
+					PreparedStatement pStmt = conn.prepareStatement(sql);
+					// 現在時刻を取得
+					LocalDateTime date = LocalDateTime.now();
+					DateTimeFormatter dtformat = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+					String fdate = dtformat.format(date);
+					// UPDATE文中の「?」に使用する値を設定しSQLを完成
+					pStmt.setString(1, fdate);
+					pStmt.setString(2, userId);
+					pStmt.setString(3, groupId);
+					// UPDATE文を実行
+					int result = pStmt.executeUpdate();
+					if (result != 1) {
+						return false;
+					}
 
-	public boolean add(String userId, String groupId) {
+				} catch (SQLException e) {
+					e.printStackTrace();
+					return false;
+				}
+				return true;
+	}
+	//グループ参加
+	public boolean join(String userId, String groupId) {
 		// データベース接続
 		try (Connection conn = DriverManager.getConnection(JDBC_URL, DB_USER, DB_PASS)) {
 			//グループが存在するかのチェック
@@ -171,7 +205,7 @@ public class GroupDAO {
 		}
 		return true;
 	}
-
+	//グループ作成
 	public boolean creat(Group gp) {
 		// データベース接続
 		try (Connection conn = DriverManager.getConnection(JDBC_URL, DB_USER, DB_PASS)) {

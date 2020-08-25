@@ -42,8 +42,8 @@ public class ActionDAO {
 				act.setActionId(rs.getString("ACTION_ID"));
 				act.setActionADT(rs.getString("ACTION_ADD_DATETIME"));
 				act.setActionDate(rs.getString("ACTION_DATE"));
-				act.setActionSTm(rs.getString("ACTION_START_TIME"));
-				act.setActionETm(rs.getString("ACTION_END_TIME"));
+				act.setActionSTm(minCut(rs.getString("ACTION_START_TIME")));
+				act.setActionETm(minCut(rs.getString("ACTION_END_TIME")));
 				act.setActionPlace(rs.getString("ACTION_PLACE"));
 				act.setActionReason(rs.getString("ACTION_REASON"));
 				act.setActionRemarks(rs.getString("ACTION_REMARKS"));
@@ -88,8 +88,8 @@ public class ActionDAO {
 				act.setActionId(rs.getString("ACTION_ID"));
 				act.setActionADT(rs.getString("ACTION_ADD_DATETIME"));
 				act.setActionDate(rs.getString("ACTION_DATE"));
-				act.setActionSTm(rs.getString("ACTION_START_TIME"));
-				act.setActionETm(rs.getString("ACTION_END_TIME"));
+				act.setActionSTm(minCut(rs.getString("ACTION_START_TIME")));
+				act.setActionETm(minCut(rs.getString("ACTION_END_TIME")));
 				act.setActionPlace(rs.getString("ACTION_PLACE"));
 				act.setActionReason(rs.getString("ACTION_REASON"));
 				act.setActionRemarks(rs.getString("ACTION_REMARKS"));
@@ -123,8 +123,8 @@ public class ActionDAO {
 				act.setActionId(rs.getString("ACTION_ID"));
 				act.setActionADT(rs.getString("ACTION_ADD_DATETIME"));
 				act.setActionDate(rs.getString("ACTION_DATE"));
-				act.setActionSTm(rs.getString("ACTION_START_TIME"));
-				act.setActionETm(rs.getString("ACTION_END_TIME"));
+				act.setActionSTm(minCut(rs.getString("ACTION_START_TIME")));
+				act.setActionETm(minCut(rs.getString("ACTION_END_TIME")));
 				act.setActionPlace(rs.getString("ACTION_PLACE"));
 				act.setActionReason(rs.getString("ACTION_REASON"));
 				act.setActionRemarks(rs.getString("ACTION_REMARKS"));
@@ -164,8 +164,8 @@ public class ActionDAO {
 				act.setActionId(rs.getString("ACTION_ID"));
 				act.setActionADT(rs.getString("ACTION_ADD_DATETIME"));
 				act.setActionDate(rs.getString("ACTION_DATE"));
-				act.setActionSTm(rs.getString("ACTION_START_TIME"));
-				act.setActionETm(rs.getString("ACTION_END_TIME"));
+				act.setActionSTm(minCut(rs.getString("ACTION_START_TIME")));
+				act.setActionETm(minCut(rs.getString("ACTION_END_TIME")));
 				act.setActionPlace(rs.getString("ACTION_PLACE"));
 				act.setActionReason(rs.getString("ACTION_REASON"));
 				act.setActionRemarks(rs.getString("ACTION_REMARKS"));
@@ -218,8 +218,8 @@ public class ActionDAO {
 				act.setActionId(rs.getString("ACTION_ID"));
 				act.setActionADT(rs.getString("ACTION_ADD_DATETIME"));
 				act.setActionDate(rs.getString("ACTION_DATE"));
-				act.setActionSTm(rs.getString("ACTION_START_TIME"));
-				act.setActionETm(rs.getString("ACTION_END_TIME"));
+				act.setActionSTm(minCut(rs.getString("ACTION_START_TIME")));
+				act.setActionETm(minCut(rs.getString("ACTION_END_TIME")));
 				act.setActionPlace(rs.getString("ACTION_PLACE"));
 				act.setActionReason(rs.getString("ACTION_REASON"));
 				act.setActionRemarks(rs.getString("ACTION_REMARKS"));
@@ -303,5 +303,12 @@ public class ActionDAO {
 			return false;
 		}
 		return true;
+	}
+	//秒削除
+	private String minCut(String min) {
+		StringBuilder sb = new StringBuilder(min);
+		 // 末尾から3文字分を削除
+        sb.setLength(sb.length()-3);
+        return sb.toString();
 	}
 }
