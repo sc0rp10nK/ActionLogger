@@ -5,16 +5,16 @@
 	class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
 	<h1 class="h2">${mbList[0].gpName}</h1>
 </div>
-	<!-- グループidをコピー -->
-	<div class="form-group row mx-0">
-		<input
-			class="border border-info rounded text-secondary text-center form-control-plaintext col-2 mr-2"
-			id="CopyTarget" type="text" value="${mbList[0].gpId}" readonly>
-		<button type="button" class="btn btn-info" onclick="CopyToClipboard()"
-			data-toggle="tooltip" data-placement="top" title="コピーする">
-			<i class="fas fa-clipboard"></i>
-		</button>
-	</div>
+<!-- グループidをコピー -->
+<div class="form-group row mx-0">
+	<input
+		class="border border-info rounded text-secondary text-center form-control-plaintext col-2 mr-2"
+		id="CopyTarget" type="text" value="${mbList[0].gpId}" readonly>
+	<button type="button" class="btn btn-info" onclick="CopyToClipboard()"
+		data-toggle="tooltip" data-placement="top" title="コピーする">
+		<i class="fas fa-clipboard"></i>
+	</button>
+</div>
 <div class="table-responsive">
 	<table class="table table-striped table-sm">
 		<thead>

@@ -33,9 +33,14 @@
 }
 
 #navLink {
-	color: white;
+	color: #3498db;
 }
-
+#dorpdown-menu{
+	background-color:#343a40;
+}
+.dropdown-item{
+	color:white;
+}
 main {
 	height: 100vh;
 }
@@ -64,6 +69,15 @@ main {
 		font-size: 3.5rem;
 	}
 }
+
+a {
+	color: #3498db;
+}
+
+a:hover {
+	color: #2980b9;
+	text-decoration: none;
+}
 </style>
 </head>
 <body>
@@ -83,7 +97,7 @@ main {
 				<i class="fas fa-user"></i> ${username}
 			</a>
 			<div class="dropdown-menu dropdown-menu-right dropdown-info"
-				aria-labelledby="navbarDropdownMenuLink-4">
+				aria-labelledby="navbarDropdownMenuLink-4"id="dorpdown-menu">
 				<a class="dropdown-item" href="/ActionLogger/?view=profile">プロフィール</a>
 				<a class="dropdown-item" href="/ActionLogger/?view=password">パスワード変更</a>
 				<a class="dropdown-item" href="/ActionLogger/logout">ログアウト</a>

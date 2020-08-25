@@ -94,7 +94,7 @@ td {
 							<%-- o正当性確認o --%>
 							<input type="hidden" name="vKey" value="${validationKey.value}">
 							<div class="mb-3">
-								<label for="password">現在のパスワード</label> <input type="password"
+								<label for="password"><span class="badge badge-danger">必須</span> 現在のパスワード</label> <input type="password"
 									class="form-control" id="password" name="password"
 									placeholder="パスワード" 　required>
 								<div class="invalid-feedback">必須</div>
