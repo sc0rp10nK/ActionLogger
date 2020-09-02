@@ -24,12 +24,11 @@ public class CreatGroup extends HttpServlet {
 		req.setCharacterEncoding("UTF-8");
 		HttpSession session = req.getSession();
 		Group gp = new Group();
-
-			gp.setGroupName(req.getParameter("group_name"));
-			gp.setGroupAdm(true);
-			gp.setGroupUserId((String) session.getAttribute("userid"));
-			// groupオブジェクトをセッションスコープに一旦保存（DBに入れるのはConfirmの後）
-			session.setAttribute("groupToAdd", gp);
+		gp.setGroupName(req.getParameter("group_name"));
+		gp.setGroupAdm(true);
+		gp.setGroupUserId((String) session.getAttribute("userid"));
+		// groupオブジェクトをセッションスコープに一旦保存（DBに入れるのはConfirmの後）
+		session.setAttribute("groupToAdd", gp);
 
 			// 確認画面にリダイレクト
 			RequestDispatcher dispatcher = req.getRequestDispatcher("/ActionLogger/?view=creatgroupconfirm");

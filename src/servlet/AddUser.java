@@ -1,5 +1,8 @@
 package servlet;
 
+//static import
+import static model.InputChecker.*;
+
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.math.BigInteger;
@@ -19,11 +22,6 @@ import model.ErrorViewData;
 import model.InputCheckException;
 import model.User;
 import model.ValidationKey;
-
-//static import
-import static model.InputChecker.checkLongInput;
-import static model.InputChecker.checkPhoneNumber;
-import static model.InputChecker.checkMailAddress;
 
 
 //ユーザー追加機能
@@ -57,10 +55,15 @@ public class AddUser extends HttpServlet {
 
 		// フォーム確認キーをセッションスコープに設定
 		HttpSession session = req.getSession();
+		if(session.getAttribute("user") != null) {
+			resp.sendRedirect("/ActionLogger");
+			return;
+		}else {
 		session.setAttribute("validationKey", validationKey);
-		
+
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/jsp/addUserForm.jsp");
 		dispatcher.forward(req, resp);
+		}
 	}
 
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

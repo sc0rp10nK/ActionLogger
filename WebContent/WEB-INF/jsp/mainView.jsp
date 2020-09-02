@@ -35,12 +35,15 @@
 #navLink {
 	color: #3498db;
 }
-#dorpdown-menu{
-	background-color:#343a40;
+
+#dorpdown-menu {
+	background-color: #343a40;
 }
-.dropdown-item{
-	color:white;
+
+.dropdown-item {
+	color: white;
 }
+
 main {
 	height: 100vh;
 }
@@ -78,6 +81,15 @@ a:hover {
 	color: #2980b9;
 	text-decoration: none;
 }
+.message {
+	margin: 15% auto;
+	text-align: center;
+	width: 65%;
+	padding: 35px;
+	border: 2px #454d55 solid;
+	border-radius: 10px;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
 </style>
 </head>
 <body>
@@ -97,7 +109,7 @@ a:hover {
 				<i class="fas fa-user"></i> ${username}
 			</a>
 			<div class="dropdown-menu dropdown-menu-right dropdown-info"
-				aria-labelledby="navbarDropdownMenuLink-4"id="dorpdown-menu">
+				aria-labelledby="navbarDropdownMenuLink-4" id="dorpdown-menu">
 				<a class="dropdown-item" href="/ActionLogger/?view=profile">プロフィール</a>
 				<a class="dropdown-item" href="/ActionLogger/?view=password">パスワード変更</a>
 				<a class="dropdown-item" href="/ActionLogger/logout">ログアウト</a>

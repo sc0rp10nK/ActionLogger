@@ -5,36 +5,50 @@
 <div
 	class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
 	<h1 class="h2">行動記録</h1>
-	<button type="button" class="btn btn-primary" data-toggle="modal"
-		data-target="#modal">絞り込み</button>
+	<c:if test="${not empty actList}">
+		<button type="button" class="btn btn-primary" data-toggle="modal"
+			data-target="#modal">絞り込み</button>
+	</c:if>
 </div>
-<div class="table-responsive">
-	<table class="table table-striped table-sm">
-		<thead>
-			<tr>
-				<th>日付</th>
-				<th>時刻</th>
-				<th>場所</th>
-				<th>理由</th>
-				<th>備考</th>
-				<th></th>
-			</tr>
-		</thead>
-		<tbody>
-			<c:forEach items="${actList}" var="act">
-				<tr>
-					<td><c:out value="${act.actionDate}" /></td>
-					<td><c:out value="${act.actionSTm } - ${act.actionETm}" /></td>
-					<td><c:out value="${act.actionPlace}" /></td>
-					<td><c:out value="${act.actionReason}" /></td>
-					<td><c:out value="${act.actionRemarks}" /></td>
-					<td><button type="button"
-							class="delete-confirm btn btn-success" value="${act.actionId}"
-							data-toggle="modal" data-target="#confirm-delete">削除</button></td>
-				</tr>
-			</c:forEach>
-		</tbody>
-	</table>
+<c:choose>
+	<c:when test="${not empty actList}">
+		<div class="table-responsive">
+			<table class="table table-striped table-sm">
+				<thead>
+					<tr>
+						<th>日付</th>
+						<th>時刻</th>
+						<th>場所</th>
+						<th>理由</th>
+						<th>備考</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					<c:forEach items="${actList}" var="act">
+						<tr>
+							<td><c:out value="${act.actionDate}" /></td>
+							<td><c:out value="${act.actionSTm } - ${act.actionETm}" /></td>
+							<td><c:out value="${act.actionPlace}" /></td>
+							<td><c:out value="${act.actionReason}" /></td>
+							<td><c:out value="${act.actionRemarks}" /></td>
+							<td><button type="button"
+									class="delete-confirm btn btn-success" value="${act.actionId}"
+									data-toggle="modal" data-target="#confirm-delete">削除</button></td>
+						</tr>
+					</c:forEach>
+				</tbody>
+			</table>
+	</c:when>
+	<c:otherwise>
+			<div class="message">
+				<h5>まだ行動記録が登録されていません</h5>
+				<br>
+				<button type="button" class="btn btn-info mx-auto d-block"
+					onclick="location.href='/ActionLogger/?view=addaction'">行動記録を登録する</button>
+			</div>
+	</c:otherwise>
+</c:choose>
 </div>
 <!-- 検索 Modal -->
 <div class="modal fade" id="modal" tabindex="-1" role="dialog"
@@ -97,7 +111,7 @@
 			<div class="modal-body">削除しますか？</div>
 			<div class="modal-footer">
 				<form action="/ActionLogger/" method="post">
-				<input type="hidden" name="view" value="activities">
+					<input type="hidden" name="view" value="activities">
 					<button type="submit" class="btn btn-success" id="deletebtn"
 						name="deletebtn">はい</button>
 					<button type="button" class="btn btn-secondary"

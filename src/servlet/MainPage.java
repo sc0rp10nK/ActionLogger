@@ -71,6 +71,7 @@ public class MainPage extends HttpServlet {
 							if (actlist == null) {
 								// エラーが出たのでメインページにリダイレクト
 								response.sendRedirect("/ActionLogger");
+								return;
 							} else {
 								session.setAttribute("getActlist", actlist);
 							}
@@ -92,6 +93,7 @@ public class MainPage extends HttpServlet {
 					} else {
 						// urlにuseridとgroupidが格納されていないのでメインページにリダイレクト
 						response.sendRedirect("/ActionLogger");
+						return;
 					}
 				} else if (view.equals("activities")) {
 					if (search != null) {
@@ -112,6 +114,7 @@ public class MainPage extends HttpServlet {
 					if (mbList == null) {
 						// エラーが出たのでメインページにリダイレクト
 						response.sendRedirect("/ActionLogger");
+						return;
 					} else {
 						session.setAttribute("mbList", mbList);
 					}
@@ -156,6 +159,16 @@ public class MainPage extends HttpServlet {
 				} else if (view.equals("joininggroup")) {
 					String gpid = (String) request.getParameter("deletebtn");
 					groupDAO.leave(userid, gpid);
+				} else if (view.equals("creatgroupconfirm")) {
+					if (session.getAttribute("groupToAdd") == null) {
+						response.sendRedirect("/ActionLogger");
+						return;
+					}
+				} else if (view.equals("addactionconfirm")) {
+					if (session.getAttribute("actionToAdd") == null) {
+						response.sendRedirect("/ActionLogger");
+						return;
+					}
 				}
 			}
 			// DBから活動記録を取得

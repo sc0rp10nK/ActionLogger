@@ -20,7 +20,8 @@
 		</tbody>
 	</table>
 </div>
-<h3>最近の行動記録</h3>
+<c:if test="${not empty actLtyList}" >
+	<h3>最近の行動記録</h3>
 <div class="table-responsive">
 	<table class="table table-striped table-sm">
 		<thead>
@@ -44,6 +45,9 @@
 			</c:forEach>
 		</tbody>
 	</table>
+</c:if>
 </div>
+<c:if test="${not empty actLtyList}" >
 <button type="button" class="btn btn-info mx-auto d-block" onclick="location.href='/ActionLogger/?view=activities'">もっと見る</button>
+</c:if>
 

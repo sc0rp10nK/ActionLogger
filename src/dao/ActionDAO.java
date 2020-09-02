@@ -278,7 +278,7 @@ public class ActionDAO {
 			DateTimeFormatter dtformat = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 			String fdate = dtformat.format(date);
 			act.setActionADT(fdate);
-			// INSERT文の準備(idは自動連番なので指定しなくてよい）
+			// INSERT文の準備
 			String sql = "INSERT INTO action "
 					+ "( action_id, action_add_datetime , action_date, action_start_time, action_end_time, action_place, action_reason, action_remarks, action_userid) "
 					+ "VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?)";

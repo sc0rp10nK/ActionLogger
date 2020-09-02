@@ -20,16 +20,18 @@ public class AddActionConfirm extends HttpServlet {
 	public AddActionConfirm() {
 		super();
 	}
-
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		HttpSession session = req.getSession();
 
+		// statusがconfirmedの場合
+		// 本来は正当な登録確認であることをチェックするべきであるが、とりあえずOmit
+		if (req.getParameter("status").equals("confirmed")) {
 		// セッションスコープに保存していた、DB登録前の活動情報を取得
 		Action act = (Action) session.getAttribute("actionToAdd");
 		ActionDAO actionDAO = new ActionDAO();
 		actionDAO.set(act); // DBに保存
-		// TODO 主キーの重複で保存できなかった場合の処理を追加
-
+		session.removeAttribute("actionToAdd");
+		}
 		// DBへの保存が成功したものとして、メインページに遷移
 		resp.sendRedirect("/ActionLogger/");
 	}
