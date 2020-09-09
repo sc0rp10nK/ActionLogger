@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <div
 	class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
 	<h1 class="h2">Dashboard</h1>
@@ -47,7 +48,7 @@
 	</table>
 </c:if>
 </div>
-<c:if test="${not empty actLtyList}" >
+<c:if test="${not empty actLtyList and fn:length(actLtyList) == 5}" >
 <button type="button" class="btn btn-info mx-auto d-block" onclick="location.href='/ActionLogger/?view=activities'">もっと見る</button>
 </c:if>
 

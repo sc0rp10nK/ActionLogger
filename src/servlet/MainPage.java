@@ -159,16 +159,22 @@ public class MainPage extends HttpServlet {
 				} else if (view.equals("joininggroup")) {
 					String gpid = (String) request.getParameter("deletebtn");
 					groupDAO.leave(userid, gpid);
+				//グループの登録時データが存在しないのにアクセスできないようにする
 				} else if (view.equals("creatgroupconfirm")) {
 					if (session.getAttribute("groupToAdd") == null) {
 						response.sendRedirect("/ActionLogger");
 						return;
 					}
+				//活動記録の登録時データが存在しないのにアクセスできないようにする
 				} else if (view.equals("addactionconfirm")) {
 					if (session.getAttribute("actionToAdd") == null) {
 						response.sendRedirect("/ActionLogger");
 						return;
 					}
+				//確認画面で別ページに移動した際、セッションの登録データを削除
+				}else if(!view.equals("addactionconfirm") || !view.equals("creatgroupconfirm")) {
+					session.removeAttribute("groupToAdd");
+					session.removeAttribute("actionToAdd");
 				}
 			}
 			// DBから活動記録を取得
