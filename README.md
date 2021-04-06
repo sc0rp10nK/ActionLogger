@@ -4,6 +4,7 @@
 ■使用言語<br>
  Java EE(Servlet・JSP)
 ## ■DB
+ H2 Database
   ### ACTION テーブル (活動)
 | ACTION_ID | ACTION_ADD_DATETIME | ACTION_DATE | ACTION_START_TIME | ACTION_END_TIME | ACTION_PLACE | ACTION_REASON | ACTION_REMARKS | ACTION_USERID    | ACTION_DELETE_DATETIME | 
 | :-------- | ------------------- | ----------- | ----------------- | --------------- | ------------ | ------------- | -------------- | ---------------- | ---------------------- |
